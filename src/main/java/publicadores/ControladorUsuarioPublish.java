@@ -3,46 +3,45 @@ package publicadores;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
-import data_types.TipoDoc;
 import sistema.Sistema;
-import sistema.ISistema;
-import data_types.DtUsuario;
-
-import java.time.LocalDate;
+import data_types.*;
 
 @WebService
 public class ControladorUsuarioPublish {
 
-    private final ISistema sistema;
+    private final Sistema sistema;
 
     public ControladorUsuarioPublish() {
         this.sistema = Sistema.getInstance();
     }
 
     @WebMethod
-    public DtUsuario iniciarSesion(String nick, String pass) {
-        return sistema.iniciarSesionUsuario(nick, pass);
+    public void eliminarSocial(String seguidor, String seguido) {
+        sistema.eliminarSocial(seguidor, seguido);
     }
 
     @WebMethod
-    public DtUsuario cerrarSesion(String nick) {
-        return sistema.cerrarSesionUsuario(nick);
-    }
-
-    @WebMethod
-    public DtUsuario altaCliente(String nickname, String nombre, String email, String contrasenia,
-                                 String urlImagen, String apellido, String nacimiento, String nacionalidad,
-                                 String tipoDoc, String numeroDoc) {
-        // Parsear tipos de datos, por ejemplo LocalDate desde String
-        return sistema.altaCliente(
-                nickname, nombre, email, contrasenia, urlImagen, apellido,
-                LocalDate.parse(nacimiento), nacionalidad,
-                Enum.valueOf(TipoDoc.class, tipoDoc), numeroDoc
-        );
+    public void guardarSocial(String seguidor, String seguido) {
+        sistema.guardarSocial(seguidor, seguido);
     }
 
     @WebMethod
     public DtUsuario consultaUsuario(String nick) {
         return sistema.consultaUsuario(nick);
+    }
+
+    @WebMethod
+    public DtUsuario dataUsuarioPorNick(String nick) {
+        return sistema.dataUsuarioPorNick(nick);
+    }
+
+    @WebMethod
+    public DtUsuario iniciarSesionUsuario(String id, String pass) {
+        return sistema.iniciarSesionUsuario(id, pass);
+    }
+
+    @WebMethod
+    public DtUsuario cerrarSesionUsuario(String nick) {
+        return sistema.cerrarSesionUsuario(nick);
     }
 }

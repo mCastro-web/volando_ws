@@ -1,2 +1,12 @@
-publicadores\ControladorUsuarioPublish.class
+publicadores\ControladorPasajePublish.class
+publicadores\ControladorAuxiliarPublish.class
+publicadores\ControladorPaquetePublish.class
 publicadores\Publicador.class
+publicadores\ControladorUsuarioPublish.class
+publicadores\ControladorItemPaquetePublish.class
+publicadores\ControladorCiudadPublish.class
+publicadores\ControladorAerolineaPublish.class
+publicadores\ControladorCategoriaPublish.class
+publicadores\ControladorClientePublish.class
+publicadores\ControladorReservaPublish.class
+publicadores\ControladorVueloPublish.class
