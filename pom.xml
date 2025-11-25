@@ -1,76 +1,58 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>uy.volandouy</groupId>
-    <artifactId>volandouy-ws</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>uy.volandouy</groupId>
+        <artifactId>volando_uy</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-    </properties>
+    <artifactId>volandouy-ws</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
 
-        <!-- Módulo lógica -->
-        <dependency>
-            <groupId>uy.volandouy</groupId>
-            <artifactId>volandouy</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Jakarta JAX-WS API (sin Metro) -->
         <dependency>
             <groupId>jakarta.xml.ws</groupId>
             <artifactId>jakarta.xml.ws-api</artifactId>
             <version>4.0.0</version>
         </dependency>
 
-        <!-- Jakarta JWS (WebService, WebMethod, etc.) -->
         <dependency>
-            <groupId>jakarta.jws</groupId>
-            <artifactId>jakarta.jws-api</artifactId>
-            <version>3.0.0</version>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
-        <!-- JAXB API para Jakarta -->
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>4.0.2</version>
-        </dependency>
-
-        <!-- JAXB implementación -->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
-            <version>4.0.2</version>
+            <version>4.0.4</version>
         </dependency>
 
-        <!-- JAX-WS implementación (la oficial para Jakarta 4) -->
         <dependency>
-            <groupId>org.glassfish.metro</groupId>
-            <artifactId>webservices-rt</artifactId>
-            <version>4.0.2</version>
+            <groupId>uy.volandouy</groupId>
+            <artifactId>volando-uy-logica</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Ejecutar clase Publicador -->
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>publicadores.Publicador</mainClass>
+                    <mainClass>publishers.Publish</mainClass>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
