@@ -391,4 +391,28 @@ public class ControladorSistemaPublish {
     public List<DtPaqueteVuelo> buscarPaquetes(String query) {
         return sistema.buscarPaquetes(query);
     }
+
+    @WebMethod
+    public List<Long> listarReservasPendientesCheckin(String nicknameCliente) {
+        return sistema.listarReservasPendientesCheckin(nicknameCliente);
+    }
+
+    @WebMethod
+    public void realizarCheckin(Long idReserva) {
+        sistema.realizarCheckin(idReserva);
+    }
+
+    @WebMethod
+    public List<Long> listarReservasConCheckin(String nicknameCliente) {
+        return sistema.listarReservasConCheckin(nicknameCliente);
+    }
+    @WebMethod
+    public DtReserva obtenerReservaCheckin(Long idReserva) {
+        return sistema.obtenerReservaCheckin(idReserva);
+    }
+
+    @WebMethod
+    public DtCheckin obtenerCheckinPorReserva(Long idReserva) {
+        return sistema.obtenerCheckinPorReserva(idReserva);
+    }
 }
