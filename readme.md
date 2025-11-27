@@ -1,12 +1,18 @@
 # VolandoUy - Web Services
 
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge&logo=openjdk&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-3.x-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)
+![JAX-WS](https://img.shields.io/badge/JAX--WS-4.0.0-007396?style=for-the-badge)
+![JAXB](https://img.shields.io/badge/JAXB-4.0.4-4B8BBE?style=for-the-badge)
+![SOAP](https://img.shields.io/badge/SOAP-Web%20Services-5C2D91?style=for-the-badge)
+
 Web Services SOAP para el sistema de reservas de vuelos Volando UY.
 
 ##  Descripción
 
 Este proyecto implementa los servicios web SOAP que exponen la funcionalidad del sistema Volando UY, permitiendo la integración con aplicaciones cliente y otros sistemas externos.
 
-##  Tecnologías
+## 🛠️ Tecnologías
 
 - **Java 21**
 - **Jakarta XML Web Services (JAX-WS) 4.0.0**
@@ -14,7 +20,7 @@ Este proyecto implementa los servicios web SOAP que exponen la funcionalidad del
 - **JAXB Runtime 4.0.4**
 - **Maven 3.x**
 
-##  Dependencias
+## 📦 Dependencias
 
 El proyecto depende del módulo de lógica de negocio:
 - `volando-uy-logica` (versión 1.0-SNAPSHOT)
@@ -25,7 +31,7 @@ El proyecto depende del módulo de lógica de negocio:
 - Maven 3.x
 - El módulo `volando-uy-logica` debe estar instalado en el repositorio local de Maven
 
-## Instalación
+## 📥 Instalación
 
 1. Clonar el repositorio:
 ```bash
@@ -46,7 +52,7 @@ cd ../volando_ws
 mvn clean package
 ```
 
-## Ejecución
+##  Ejecución
 
 ### Modo Desarrollo
 
@@ -64,7 +70,7 @@ Para ejecutar el JAR ejecutable generado:
 java -jar target/volandouy-ws-1.0-SNAPSHOT.jar
 ```
 
-##  Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 volando_ws/
@@ -77,13 +83,13 @@ volando_ws/
 └── README.md
 ```
 
-##  Características
+## 📝 Características
 
 - **Servicios SOAP**: Implementación completa de servicios web SOAP usando JAX-WS
 - **JAR Ejecutable**: Generación automática de JAR con todas las dependencias incluidas mediante Maven Shade Plugin
 - **Clase Principal**: `publishers.Publish` - Punto de entrada para publicar los servicios web
 
-## Configuración de Maven
+## 🔧 Configuración de Maven
 
 ### Plugins Utilizados
 
@@ -96,15 +102,16 @@ Los servicios SOAP se publican a través de la clase `Publish`. Los endpoints es
 
 
 
-##  Licencia
+## 📄 Licencia
 
-Este proyecto es parte del sistema VolandoUy.
+Este proyecto cuenta con Licencia MIT.
 
 ##  Proyectos Relacionados
 
 - [volandouy_src](https://github.com/mCastro-web/volando_src) - Módulo de lógica de negocio
 
-## Soporte
+
+##  Soporte
 
 Para reportar problemas o solicitar nuevas características, por favor abre un issue en el repositorio de GitHub.
 
