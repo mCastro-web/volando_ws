@@ -1,6 +1,7 @@
 package publishers;
 
 import jakarta.jws.WebMethod;
+import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import sistema.Sistema;
 import data_types.*;
@@ -292,7 +293,9 @@ public class ControladorSistemaPublish {
                     p.getDescripcion(),
                     p.getDiasValidez(),
                     p.getDescuento(),
+                    p.getCosto(),
                     p.getAltaFecha());
+
             salida.add(dto);
         }
         return salida;
@@ -414,5 +417,18 @@ public class ControladorSistemaPublish {
     @WebMethod
     public DtCheckin obtenerCheckinPorReserva(Long idReserva) {
         return sistema.obtenerCheckinPorReserva(idReserva);
+    }
+
+
+    @WebMethod
+    public DtUsuarioExtendido consultaUsuarioExtendido(@WebParam(name="nick") String nick,
+                                              @WebParam(name="logueado") String logueado) {
+        return sistema.consultaUsuarioExtendido(nick, logueado);
+    }
+
+    @WebMethod
+    public DtUsuarioExtendido dataUsuarioPorNickExtendido(@WebParam(name="nick") String nick,
+                                                          @WebParam(name="logueado") String logueado) {
+        return sistema.dataUsuarioPorNickExtendido(nick, logueado);
     }
 }

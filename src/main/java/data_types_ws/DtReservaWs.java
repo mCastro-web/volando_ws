@@ -10,6 +10,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "DtReservaWs")
 public class DtReservaWs {
+    private Long id;
     private String fecha;
     private String tipoAsiento;
     private int equipajeExtra;
@@ -24,9 +25,10 @@ public class DtReservaWs {
     public DtReservaWs() {
     }
 
-    public DtReservaWs(String fecha, String tipoAsiento, int equipajeExtra, float costo,
-            DtClienteWs cliente, DtVueloWs vuelo, DtPaqueteVueloWs paquete,
-            List<DtPasajeWs> pasajes, String validez, Boolean checkin) {
+    public DtReservaWs(Long id, String fecha, String tipoAsiento, int equipajeExtra, float costo,
+                       DtClienteWs cliente, DtVueloWs vuelo, DtPaqueteVueloWs paquete,
+                       List<DtPasajeWs> pasajes, String validez, Boolean checkin) {
+        this.id = id;
         this.fecha = fecha;
         this.tipoAsiento = tipoAsiento;
         this.equipajeExtra = equipajeExtra;
@@ -38,6 +40,9 @@ public class DtReservaWs {
         this.validez = validez;
         this.checkin = checkin;
     }
+    public Long getId() {return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getFecha() {
         return fecha;
