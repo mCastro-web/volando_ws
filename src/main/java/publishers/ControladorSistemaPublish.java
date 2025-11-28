@@ -409,6 +409,7 @@ public class ControladorSistemaPublish {
     public List<Long> listarReservasConCheckin(String nicknameCliente) {
         return sistema.listarReservasConCheckin(nicknameCliente);
     }
+
     @WebMethod
     public DtReserva obtenerReservaCheckin(Long idReserva) {
         return sistema.obtenerReservaCheckin(idReserva);
@@ -419,27 +420,70 @@ public class ControladorSistemaPublish {
         return sistema.obtenerCheckinPorReserva(idReserva);
     }
 
-
     @WebMethod
-    public DtUsuarioExtendido consultaUsuarioExtendido(@WebParam(name="nick") String nick,
-                                              @WebParam(name="logueado") String logueado) {
+    public DtUsuarioExtendido consultaUsuarioExtendido(@WebParam(name = "nick") String nick,
+            @WebParam(name = "logueado") String logueado) {
         return sistema.consultaUsuarioExtendido(nick, logueado);
     }
 
     @WebMethod
-    public DtUsuarioExtendido dataUsuarioPorNickExtendido(@WebParam(name="nick") String nick,
-                                                          @WebParam(name="logueado") String logueado) {
+    public DtUsuarioExtendido dataUsuarioPorNickExtendido(@WebParam(name = "nick") String nick,
+            @WebParam(name = "logueado") String logueado) {
         return sistema.dataUsuarioPorNickExtendido(nick, logueado);
     }
 
     @WebMethod
-    public List<String> listarSeguidores(String idUsuario){
+    public List<String> listarSeguidores(String idUsuario) {
         return sistema.listarSeguidores(idUsuario);
     }
 
     @WebMethod
-    public List<String> listarSeguidos(String idUsuario){
+    public List<String> listarSeguidos(String idUsuario) {
         return sistema.listarSeguidos(idUsuario);
+    }
+
+    // === SUBIR IMAGEN ===
+    @WebMethod
+    public String subirImagen(@WebParam(name = "imageBytes") byte[] imageBytes,
+            @WebParam(name = "fileName") String fileName,
+            @WebParam(name = "contentType") String contentType,
+            @WebParam(name = "nombreArchivo") String nombreArchivo) {
+        try {
+            String supabaseUrl = "https://myzsshgrfrupiwxbsuhr.supabase.co";
+            String serviceKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15enNzaGdyZnJ1cGl3eGJzdWhyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MDI4NDAyOCwiZXhwIjoyMDc1ODYwMDI4fQ.9I4KwOlhf0y3kmSxWAMWKucxzvBftBgpnOquhB1BALg";
+            String bucket = "Imagenes";
+
+            String path = "uploads/" + nombreArchivo + "_" + fileName;
+            String uploadUrl = supabaseUrl + "/storage/v1/object/" + bucket + "/" + path + "?upsert=true";
+
+            java.net.URL url = new java.net.URL(uploadUrl);
+            java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PUT");
+            conn.setDoOutput(true);
+            conn.setRequestProperty("Authorization", "Bearer " + serviceKey);
+            conn.setRequestProperty("apikey", serviceKey);
+            conn.setRequestProperty("Content-Type", contentType);
+
+            try (java.io.OutputStream output = conn.getOutputStream()) {
+                output.write(imageBytes);
+            }
+
+            int status = conn.getResponseCode();
+            conn.disconnect();
+
+            if (status >= 200 && status < 300) {
+                String publicUrl = supabaseUrl + "/storage/v1/object/public/" + bucket + "/" + path;
+                System.out.println("URL generada: " + publicUrl);
+                return publicUrl;
+            } else {
+                System.err.println("Error al subir imagen: código " + status);
+                return null;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
