@@ -431,4 +431,15 @@ public class ControladorSistemaPublish {
                                                           @WebParam(name="logueado") String logueado) {
         return sistema.dataUsuarioPorNickExtendido(nick, logueado);
     }
+
+    @WebMethod
+    public List<String> listarSeguidores(String idUsuario){
+        return sistema.listarSeguidores(idUsuario);
+    }
+
+    @WebMethod
+    public List<String> listarSeguidos(String idUsuario){
+        return sistema.listarSeguidos(idUsuario);
+    }
+
 }
